@@ -1,6 +1,8 @@
 package com.controller;
 
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -66,8 +68,22 @@ public class StudentController {
 	@PostMapping("/upload")
 	public String uploadFile(@RequestParam("file") MultipartFile file)
 	{
+		String response ="" ;
+		try {
+			byte[]  arr = file.getBytes();
+			int i =0;
+			
+			while(i < file.getSize()) {
+				response += (char)arr[i];
+				i++;
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return "uploaded";
+		return response;
 		
 	}
 	
